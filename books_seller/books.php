@@ -2,6 +2,7 @@
 <html>
 <?php
 $active = "books";
+session_start();
 include_once ("includes/header.php");
 ?>
 <body>

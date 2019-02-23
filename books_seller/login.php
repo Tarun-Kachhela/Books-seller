@@ -3,18 +3,28 @@
 <?php
     include_once ("includes/header.php");
     include_once ("includes/connection.php");
-    if (isset($_POST['register'])){
+    include_once ("includes/functions.php");
+    startSession();
+    if (isset($_POST['login'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $password = password_hash($password,1);
+//        $password = password_hash($password,1);
         $type = $_POST['type'];
-        $query  = "INSERT INTO users ( username, password, user_type) VALUES ('$username','$password','$type')";
-        $isSuccess = mysqli_query($conn,$query);
-        if(!$isSuccess){
-            die(mysqli_error($conn));
+//        $query  = "INSERT INTO users ( username, password, user_type) VALUES ('$username','$password','$type')";
+        $query = "SELECT * FROM users WHERE username ='$username'";
+        $rs = mysqli_query($conn,$query);
+        if($row= mysqli_fetch_assoc($rs)){
+            startSession();
+            $_SESSION['id'] = $row['id'];
+//            die($row['user_id']);
+            if(password_verify($password,$row['password'])){
+                header("Location: index.php");
+            }else{
+                header("Location: login.php");
+            }
         }
-        sleep(20);
-        header("location: index.php");
+//        sleep(20);
+//        header("location: index.php");
     }
 
 ?>
@@ -27,7 +37,7 @@
 					<form action="login.php" enctype="multipart/form-data" method="post" role="form">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="username" type="email" autofocus="">
+								<input class="form-control" placeholder="E-mail" name="username" type="text" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -47,7 +57,7 @@
 									<input name="remember" type="checkbox" value="Remember Me">Remember Me
 								</label>
 							</div>
-							<button type="submit" name="register" class="btn btn-primary">Register</button></fieldset>
+							<button type="submit" name="login" class="btn btn-primary">Login</button></fieldset>
 					</form>
 				</div>
 			</div>

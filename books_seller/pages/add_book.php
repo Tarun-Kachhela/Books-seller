@@ -2,6 +2,7 @@
 <?php
     if (isset($_POST['submit'])){
         include_once ("../includes/connection.php");
+        include_once ("../includes/functions.php");
         $subject  = $_POST['subject'];
         $standard = $_POST['standard'];
         $company_name  = $_POST['company_name'];
@@ -11,10 +12,12 @@
         $tmp_image  = $_FILES['image']['tmp_name'];
         $upload = move_uploaded_file($tmp_image,"../images/books/$image");
         echo $upload;
+        startSession();
+        $id = $_SESSION['id'];
 //        die();
         $quantity = $_POST['quantity'];
 
-        $query = "INSERT INTO books (subject, standard, company_name, state, price, user_id, quantity, image) VALUES ('$subject','$standard','$company_name','$state','$price','1','$quantity','$image')";
+        $query = "INSERT INTO books (subject, standard, company_name, state, price, user_id, quantity, image) VALUES ('$subject','$standard','$company_name','$state','$price','$id','$quantity','$image')";
 
         $rs = mysqli_query($conn,$query);
         echo $rs."ss";
