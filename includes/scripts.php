@@ -12,6 +12,7 @@
     $("input[type='number']").inputSpinner();
 </script>
 <script>tinymce.init({ selector:'#description'});</script>
+<script>tinymce.init({ selector:'#address'});</script>
 <script>
     window.onload = function () {
         var chart1 = document.getElementById("line-chart").getContext("2d");

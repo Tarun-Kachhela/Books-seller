@@ -21,7 +21,7 @@
         $quantity = $_POST['quantity'];
         echo $book_name." : ".$description." : ".$subject." : ".$standard." : ".$company_name." : ".$state." : ".$price." : ".$quantity." : ".$image;
 //        die();
-        $query = "INSERT INTO books(book_name,description,subject,standard,company_name,state,price, user_id, quantity, image) VALUES ('$book_name','$description','$subject','$standard','$company_name','$state','$price','3','$quantity','$image')";
+        $query = "INSERT INTO books(book_name,description,subject,standard,company_name,state,price, user_id, quantity, image) VALUES ('$book_name','$description','$subject','$standard','$company_name','$state','$price','$id','$quantity','$image')";
 
         $rs = mysqli_query($conn,$query);
         echo $rs."ss";
@@ -85,7 +85,7 @@
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit" id="submit">Add book</button>
         </form>
         <br>
         <br>

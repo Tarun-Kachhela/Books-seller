@@ -26,7 +26,6 @@ if (isset($_POST['submit'])){
         $var ="../images/books/$old_image";
         unset($var);
         $old_image = $image;
-        echo "nosame";
     }
     $query = "UPDATE `books` SET book_name='$book_name',description='$description',subject='$subject',standard='$standard',company_name='$company_name',state='$state',price='$price',user_id='$id',quantity='$quantity',image='$image' WHERE id='$book_id '";
 
@@ -123,7 +122,7 @@ if(isset($_GET['edit_id'])) {
                     <textarea class="form-control" name="description" id="description" cols="30" rows="10"><?php echo $description?></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+                <button type="submit" class="btn btn-warning" name="submit" id="submit">Edit Book</button>
             </form>
             <br>
             <br>

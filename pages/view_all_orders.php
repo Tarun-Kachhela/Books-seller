@@ -29,7 +29,7 @@
                 $id= $_SESSION['id'];
                 //                echo $id;
                 //                die();
-                $query  = "SELECT books.*,placed_orders.* FROM `placed_orders` JOIN books ON placed_orders.book_id=books.id WHERE placed_orders.buyer_user=$id";
+                $query  = "SELECT books.*,placed_orders.* FROM books JOIN placed_orders ON placed_orders.seller_user=$id WHERE placed_orders.book_id=books.id";
                 $rs = mysqli_query($conn,$query);
                 while ($row = mysqli_fetch_assoc($rs)) {
                     $book_name = $row['book_name'];

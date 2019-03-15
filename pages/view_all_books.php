@@ -27,14 +27,15 @@
                     startSession();
                     $i = 0;
                     $id= $_SESSION['id'];
+                    echo $id;
+//                    die();
                     $query  = "SELECT * FROM books WHERE user_id ='$id'";
                     $rs = mysqli_query($conn,$query);
 //                    echo $username."t";
                     while ($row = mysqli_fetch_assoc($rs)) {
-//                        echo "d";
                         $book_id = $row['id'];
                         $book_name = $row['book_name'];
-                        $description = $row['description'];
+                        $description = strip_tags($row['description']);
                         $subject = $row['subject'];
                         $standard = $row['standard'];
                         $company_name = $row['company_name'];
